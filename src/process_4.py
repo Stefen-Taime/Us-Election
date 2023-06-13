@@ -105,8 +105,8 @@ result_df = df.groupBy("final_party").sum("electors")
 result_df.write.format("mongo").option("uri", "mongodb://root:example@mongo:27017/admin.election_results_out").mode("overwrite").save()
 
 # Your Twilio account sid and auth token
-account_sid = 'ACef65bb78dd4d08cbabbed5bc0c5c8a42'
-auth_token = '37d27c1c6c6f2ee6b8bde3d239a76c0e'
+account_sid = ''
+auth_token = ''
 client = Client(account_sid, auth_token)
 
 # Collect results from DataFrame
@@ -119,9 +119,9 @@ result_str = "\n".join([f"{row['final_party']}: {row['sum(electors)']} electors"
 message_body = f"Dear recipient, \n\nWe are pleased to share with you the final election results:\n\n{result_str}\n\nWe would like to express our gratitude for your patience and interest in our democratic process. For more detailed results, please visit our official website.\n\nBest regards,\n[Election Committee]"
 
 message = client.messages.create(
-    from_='+13613265649',
+    from_='',
     body=message_body,
-    to='+14385064453'
+    to=''
 )
 
 print(f"Message sent with id {message.sid}")
